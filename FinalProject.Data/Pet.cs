@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace FinalProject.Data
 {
+    public enum Species { dog, cat }
     public class Pet
     {
         [Key]
