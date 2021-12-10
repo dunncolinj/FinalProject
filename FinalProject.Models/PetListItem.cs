@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace FinalProject.Models
 {
-    class PetListItem
+    public class PetListItem
     {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public enum Species { get; set; }
     }
 }
