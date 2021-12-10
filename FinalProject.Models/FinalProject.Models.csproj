@@ -54,6 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LostPetCreate.cs" />
+    <Compile Include="LostPetDetail.cs" />
+    <Compile Include="LostPetEdit.cs" />
+    <Compile Include="LostPetListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
