@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FinalProject.Data;
+using FinalProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +10,12 @@ namespace FinalProject.Services
 {
     public class LostPetService
     {
-        private readonly Guid _ownerId;
-        // private readonly Guid _postId;
+        private readonly int _ownerID;
+     
 
-        public LostPetService(Guid ownerId)
+        public LostPetService(int ownerID)
         {
-            _ownerId = ownerId;
+            _ownerID = ownerID;
         }
 
         public bool CreateLostPet(LostPetCreate model)
@@ -21,12 +23,14 @@ namespace FinalProject.Services
             var entity =
                 new LostPet()
                 {
-                    ID = model.ID,
+                    //ID = model.ID,
                     Comments = model.Comments,
                     WhenLost = DateTime.Now,
                     PetID = model.PetID
 
                 };
+
+
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.LostPets.Add(entity);
@@ -41,7 +45,7 @@ namespace FinalProject.Services
                 var query =
                     ctx
                         .LostPets
-                        .Where(e => e.OwnerID == _ownerID)
+                        .Where(e => e.ID == _ownerID)
                         .Select(
                         e =>
                         new LostPetListItem
@@ -61,12 +65,12 @@ namespace FinalProject.Services
             {
                 var entity =
                     ctx
-                    .Replies
+                    .LostPets
                     .Single(e => e.ID == ID && e.PetID == petID);
                 return
                     new LostPetDetail
                     {
-                        //CommentID = entity.CommentID
+                       
                         PetID = entity.PetID,
                         Comments = entity.Comments
                     };
@@ -80,11 +84,11 @@ namespace FinalProject.Services
                 var entity =
                     ctx
                     .LostPets
-                    .Single(e => e.PetID == OwnerId && e.OwnerId == _ownerId);
+                    .Single(e => e.PetID == ownerID && e.ID == _ownerID);
                 return
                     new LostPetDetail
                     {
-                        PetId = entity.PetId
+                        PetID = entity.PetID
                     };
             }
         }
@@ -96,7 +100,7 @@ namespace FinalProject.Services
                 var entity =
                     ctx
                         .LostPets
-                        .Single(e => e.PetID == model.PetID && e.OwnerId == _ownerId);
+                        .Single(e => e.PetID == model.PetID && e.ID == _ownerID);
 
 
                 return ctx.SaveChanges() == 1;
@@ -110,7 +114,7 @@ namespace FinalProject.Services
                 var entity =
                     ctx
                     .LostPets
-                    .Single(e => e.PetId == petID && e.OwnerId == _ownerId);
+                    .Single(e => e.PetID == petID && e.ID == _ownerID);
 
                 ctx.LostPets.Remove(entity);
 

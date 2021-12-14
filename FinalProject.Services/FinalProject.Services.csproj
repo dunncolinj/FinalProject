@@ -61,5 +61,15 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FinalProject.Data\FinalProject.Data.csproj">
+      <Project>{d930b885-b740-4468-91be-2c0f9b8ba02d}</Project>
+      <Name>FinalProject.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FinalProject.Models\FinalProject.Models.csproj">
+      <Project>{e53d0af3-97a5-42f4-89a6-4a4308b2ec07}</Project>
+      <Name>FinalProject.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
