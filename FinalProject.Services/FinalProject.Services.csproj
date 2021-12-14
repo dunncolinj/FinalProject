@@ -54,11 +54,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PetService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FinalProject.Data\FinalProject.Data.csproj">
+      <Project>{D930B885-B740-4468-91BE-2C0F9B8BA02D}</Project>
+      <Name>FinalProject.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FinalProject.Models\FinalProject.Models.csproj">
+      <Project>{E53D0AF3-97A5-42F4-89A6-4A4308B2EC07}</Project>
+      <Name>FinalProject.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
