@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FinalProject.Models
 {
-    class UserCreate
+    public class UserCreate
     {
         [Required]
         public string Name { get; set; }
