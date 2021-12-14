@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PetService.cs" />
+    <Compile Include="LostPetService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,8 +69,9 @@
     </ProjectReference>
     <ProjectReference Include="..\FinalProject.Models\FinalProject.Models.csproj">
       <Project>{E53D0AF3-97A5-42F4-89A6-4A4308B2EC07}</Project>
-      <Name>FinalProject.Models</Name>
+      <Project>{d930b885-b740-4468-91be-2c0f9b8ba02d}</Project>
+      <Name>FinalProject.Data</Name>
     </ProjectReference>
-  </ItemGroup>
+    </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
