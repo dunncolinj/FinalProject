@@ -23,5 +23,9 @@ namespace FinalProject.Models
         [MinLength(1, ErrorMessage = "You must enter in a numer.")]
         [MaxLength(6, ErrorMessage = "The number you have entered is too long.")]
         public int UserId { get; set; }
+
+        public string breed { get; set; }
+        public int weight { get; set; }
+        public Enum Species { get; set; }
     }
 }
