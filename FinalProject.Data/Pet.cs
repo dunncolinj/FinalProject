@@ -23,5 +23,6 @@ namespace FinalProject.Data
         public string MicrochipNumber { get; set; }
         [ForeignKey(nameof(UserID))]
         public int UserID { get; set; }
+        public virtual User User { get; set; }
     }
 }
