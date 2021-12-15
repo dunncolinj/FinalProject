@@ -24,8 +24,8 @@ namespace FinalProject.Models
         [MaxLength(6, ErrorMessage = "The number you have entered is too long.")]
         public int UserId { get; set; }
 
-        public string breed { get; set; }
-        public int weight { get; set; }
+        public string Breed { get; set; }
+        public int Weight { get; set; }
         public Enum Species { get; set; }
     }
 }
