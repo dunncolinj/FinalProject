@@ -16,7 +16,7 @@ namespace FinalProject.WebAPI.Controllers
         public IHttpActionResult Get(int id)
         {
             LostPetService lostPetService = CreateLostPetService();
-            var lostPet = lostPetService.GetLostPets(id);
+            var lostPet = lostPetService.GetLostPets();//(id)
             return Ok(lostPet);
         }
 
