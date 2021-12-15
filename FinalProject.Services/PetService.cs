@@ -10,11 +10,11 @@ namespace FinalProject.Services
 {
     public class PetService
     {
-        public readonly Guid _chipID;
+        public readonly int _userID;
 
-        public PetService(Guid chipID)
+        public PetService(int userID)
         {
-            _chipID = chipID;
+            _userID = userID;
         }
 
         public bool CreatePet(PetCreate pet)
@@ -27,7 +27,7 @@ namespace FinalProject.Services
                     Breed = pet.Breed,
                     Weight = pet.Weight,
                     //MicrochipNumber = pet.MicrochipNumber,
-                    UserID = pet.UserID,
+                    UserID = _userID,
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -44,14 +44,14 @@ namespace FinalProject.Services
                 var query =
                     ctx
                         .Pets
-                        .Where(e => e.MicrochipNumber == _chipID)
+                        .Where(e => e.UserID == _userID)
                         .Select(
                             e =>
                                 new PetListItem
                                 {
                                     ID = e.ID,
                                     Name = e.Name,
-                                    UserID = e.UserID
+                                    UserID = _userID
                                     //Species??
                                 }
                         );
@@ -66,7 +66,7 @@ namespace FinalProject.Services
                 var entity =
                     ctx
                         .Pets
-                        .Single(e => e.ID == id && e.MicrochipNumber == _chipID);
+                        .Single(e => e.ID == id && e.UserID == _userID);
                 return
                     new PetDetail
                     {
@@ -83,11 +83,11 @@ namespace FinalProject.Services
                 var entity =
                     ctx
                         .Pets
-                        .Single(e => e.ID == pet.ID && e.MicrochipNumber == _chipID);
+                        .Single(e => e.ID == pet.ID && e.UserID == _userID);
                 //entity.ID = pet.ID;
                 entity.Name = pet.Name;
                 entity.Weight = pet.Weight;
-                entity.OwnerID = pet.OwnerID;
+                entity.UserID = _userID;
 
                 return ctx.SaveChanges() == 1;
             }
@@ -100,7 +100,7 @@ namespace FinalProject.Services
                 var entity =
                     ctx
                         .Pets
-                        .Single(e => e.ID == ID && e.MicrochipNumber == _chipID);
+                        .Single(e => e.ID == ID && e.UserID == _userID);
 
                 ctx.Pets.Remove(entity);
 
