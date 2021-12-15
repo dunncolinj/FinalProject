@@ -16,7 +16,11 @@ namespace FinalProject.Data
 
         [ForeignKey(nameof(PetID))]
         public int PetID { get; set; }
+
+        public virtual Pet Pet { get; set; }
+
         public DateTime WhenLost { get; set; }
+
         public string Comments { get; set; }
     }
 }
