@@ -42,5 +42,19 @@ namespace FinalProject.WebAPI.Controllers
             return Ok(user);
         }
 
+        public IHttpActionResult Put(UserUpdate user)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            var service = CreateUserService();
+            if (!service.UpdateUser(user)) return InternalServerError();
+            return Ok();
+        }
+
+        public IHttpActionResult Delete(int id)
+        {
+            var service = CreateUserService();
+            if (!service.DeleteUser(id)) return InternalServerError();
+            return Ok();
+        }
     }
 }
