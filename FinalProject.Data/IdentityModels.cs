@@ -34,7 +34,7 @@ namespace FinalProject.Data
         }
 
         // Insert DbSet statements here for each table being added
-        public DbSet<User> Users { get; set; }
+        public new DbSet<User> Users { get; set; }
         public DbSet<Pet> Pets { get; set; }
         public DbSet<LostPet> LostPets { get; set; }
 
