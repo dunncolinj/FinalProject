@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
 
 namespace FinalProject.WebAPI.Controllers
 {
@@ -35,8 +36,8 @@ namespace FinalProject.WebAPI.Controllers
 
         private LostPetService CreateLostPetService()
         {
-            var lostPetID = int.Parse(User.Identity.GetLostPetID());
-            var lostPetService = new LostPetService(lostPetID);
+            var ID = int.Parse(User.Identity.GetUserId());
+            var lostPetService = new LostPetService(ID);
             return lostPetService;
         }
 
