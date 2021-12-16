@@ -49,10 +49,12 @@ namespace FinalProject.Services
                             e =>
                                 new PetListItem
                                 {
-                                    ID = e.ID,
                                     Name = e.Name,
+                                    Species = e.Species,
+                                    Breed = e.Breed,
+                                    Weight = e.Weight,
+                                    MicrochipNumber = e.MicrochipNumber,
                                     UserID = _userID
-                                    //Species??
                                 }
                         );
                 return query.ToArray();
@@ -71,7 +73,12 @@ namespace FinalProject.Services
                     new PetDetail
                     {
                         ID = entity.ID,
-                        //name, breed, weight, species, microchip number
+                        Name = entity.Name, 
+                        Breed = entity.Breed, 
+                        Weight = entity.Weight, 
+                        Species = entity.Species, 
+                        MicrochipNumber = entity.MicrochipNumber,
+                        UserID = _userID
                     };
             }
         }
@@ -84,10 +91,9 @@ namespace FinalProject.Services
                     ctx
                         .Pets
                         .Single(e => e.ID == pet.ID && e.UserID == _userID);
-                //entity.ID = pet.ID;
+                entity.ID = pet.ID;
                 entity.Name = pet.Name;
                 entity.Weight = pet.Weight;
-                entity.UserID = _userID;
 
                 return ctx.SaveChanges() == 1;
             }
