@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinalProject.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -26,6 +27,6 @@ namespace FinalProject.Models
 
         public string Breed { get; set; }
         public int Weight { get; set; }
-        public Enum Species { get; set; }
+        public Species Species { get; set; }
     }
 }
