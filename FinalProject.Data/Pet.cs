@@ -21,7 +21,7 @@ namespace FinalProject.Data
         public int Weight { get; set; }
         [Required]
         public string MicrochipNumber { get; set; }
-        [ForeignKey(nameof(UserID))]
+        [ForeignKey(nameof(User))]
         public int UserID { get; set; }
         public virtual User User { get; set; }
     }

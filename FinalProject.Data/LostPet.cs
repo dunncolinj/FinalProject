@@ -13,7 +13,7 @@ namespace FinalProject.Data
         [Key]
         public int ID { get; set; }
 
-        [ForeignKey(nameof(PetID))]
+        [ForeignKey(nameof(Pet))]
         public int PetID { get; set; }
         public virtual Pet Pet { get; set; }
 
