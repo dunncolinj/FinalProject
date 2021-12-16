@@ -26,7 +26,7 @@ namespace FinalProject.Services
                     Species = pet.Species,
                     Breed = pet.Breed,
                     Weight = pet.Weight,
-                    //MicrochipNumber = pet.MicrochipNumber,
+                    MicrochipNumber = pet.MicrochipNumber,
                     UserID = _userID,
                 };
 

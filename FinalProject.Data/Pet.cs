@@ -16,7 +16,7 @@ namespace FinalProject.Data
         [Required]
         public string Name { get; set; }
         [Required]
-        public Enum Species { get; set; }
+        public Species Species { get; set; }
         public string Breed { get; set; }
         public int Weight { get; set; }
         [Required]

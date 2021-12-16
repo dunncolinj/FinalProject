@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinalProject.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,6 @@ namespace FinalProject.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public int UserID { get; set; }
-        public Enum Species { get; set; }
+        public Species Species { get; set; }
     }
 }
