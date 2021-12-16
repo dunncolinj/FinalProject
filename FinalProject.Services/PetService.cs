@@ -91,9 +91,13 @@ namespace FinalProject.Services
                     ctx
                         .Pets
                         .Single(e => e.ID == pet.ID && e.UserID == _userID);
-                entity.ID = pet.ID;
                 entity.Name = pet.Name;
+                entity.Species = pet.Species;
+                entity.Breed = pet.Breed;
                 entity.Weight = pet.Weight;
+                entity.MicrochipNumber = pet.MicrochipNumber;
+                entity.UserID = _userID;
+                entity.User = pet.User;
 
                 return ctx.SaveChanges() == 1;
             }
