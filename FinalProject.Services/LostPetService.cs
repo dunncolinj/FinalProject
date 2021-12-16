@@ -23,11 +23,10 @@ namespace FinalProject.Services
             var entity =
                 new LostPet()
                 {
-                    //ID = model.ID,
+                    ID = model.ID,
                     Comments = model.Comments,
                     WhenLost = DateTime.Now,
                     PetID = model.PetID
-
                 };
 
 

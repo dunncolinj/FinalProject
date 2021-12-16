@@ -9,6 +9,7 @@ namespace FinalProject.Models
     public class LostPetEdit
     {
         public int PetID { get; set; }
+        public DateTime WhenLost { get; set; }
         public string Comments { get; set; }
     }
 }

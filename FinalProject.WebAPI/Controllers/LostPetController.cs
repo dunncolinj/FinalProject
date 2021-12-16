@@ -10,15 +10,14 @@ using Microsoft.AspNet.Identity;
 
 namespace FinalProject.WebAPI.Controllers
 {
+    [Authorize]
     public class LostPetController : ApiController
     {
-        [Authorize]
-
-        public IHttpActionResult Get(int id)
+        private LostPetService CreateLostPetService()
         {
-            LostPetService lostPetService = CreateLostPetService();
-            var lostPet = lostPetService.GetLostPets();//(id)
-            return Ok(lostPet);
+            var ID = int.Parse(User.Identity.GetUserId());
+            var lostPetService = new LostPetService(ID);
+            return lostPetService;
         }
 
         public IHttpActionResult Post(LostPetCreate lostPet)
@@ -34,26 +33,19 @@ namespace FinalProject.WebAPI.Controllers
             return Ok();
         }
 
-        private LostPetService CreateLostPetService()
-        {
-            var ID = int.Parse(User.Identity.GetUserId());
-            var lostPetService = new LostPetService(ID);
-            return lostPetService;
-        }
-
         public IHttpActionResult Get()
         {
             LostPetService lostPetService = CreateLostPetService();
-            var note = lostPetService.GetLostPets();
-            return Ok(note);
+            var lostpets = lostPetService.GetLostPets();
+            return Ok(lostpets);
         }
         public IHttpActionResult Get(int petID, int ownerID)
         {
             LostPetService lostPetService = CreateLostPetService();
-            var note = lostPetService.GetLostPetByID(petID, ownerID);
-            return Ok(note);
+            var lostpet = lostPetService.GetLostPetByID(petID, ownerID);
+            return Ok(lostpet);
         }
-
+        
         public IHttpActionResult Put(LostPetEdit lostPet)
         {
             if (!ModelState.IsValid)
