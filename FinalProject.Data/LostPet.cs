@@ -11,12 +11,10 @@ namespace FinalProject.Data
     public class LostPet
     {
         [Key]
-
         public int ID { get; set; }
 
         [ForeignKey(nameof(PetID))]
         public int PetID { get; set; }
-
         public virtual Pet Pet { get; set; }
 
         public DateTime WhenLost { get; set; }
