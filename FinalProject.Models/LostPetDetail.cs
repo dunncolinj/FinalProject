@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinalProject.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,6 @@ namespace FinalProject.Models
         public int PetID { get; set; }
         public string Comments { get; set; }
         public DateTime WhenLost { get; set; }
+        public int MyProperty { get; set; }
     }
 }

@@ -20,5 +20,8 @@ namespace FinalProject.Data
         public DateTime WhenLost { get; set; }
 
         public string Comments { get; set; }
+
+        public Guid UserId { get; set; }
+
     }
 }
