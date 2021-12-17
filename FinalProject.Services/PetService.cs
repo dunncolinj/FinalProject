@@ -44,7 +44,7 @@ namespace FinalProject.Services
                 var query =
                     ctx
                         .Pets
-                        .Where(e => e.UserID == _userID)
+                        //.Where(e => e.UserID == _userID)
                         .Select(
                             e =>
                                 new PetListItem
@@ -68,7 +68,7 @@ namespace FinalProject.Services
                 var entity =
                     ctx
                         .Pets
-                        .Single(e => e.ID == id && e.UserID == _userID);
+                        .Single(e => e.ID == id);
                 return
                     new PetDetail
                     {
@@ -90,7 +90,7 @@ namespace FinalProject.Services
                 var entity =
                     ctx
                         .Pets
-                        .Single(e => e.ID == pet.ID && e.UserID == _userID);
+                        .Single(e => e.ID == pet.ID);
                 entity.Name = pet.Name;
                 entity.Species = pet.Species;
                 entity.Breed = pet.Breed;
@@ -110,7 +110,7 @@ namespace FinalProject.Services
                 var entity =
                     ctx
                         .Pets
-                        .Single(e => e.ID == ID && e.UserID == _userID);
+                        .Single(e => e.ID == ID);
 
                 ctx.Pets.Remove(entity);
 
