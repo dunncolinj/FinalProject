@@ -10,9 +10,9 @@ namespace FinalProject.Services
 {
     public class UserService
     {
-        private readonly int _userId;
+        private readonly Guid _userId;
 
-        public UserService(int userId)
+        public UserService(Guid userId)
         {
             _userId = userId;
         }
@@ -59,7 +59,7 @@ namespace FinalProject.Services
             }
         }
 
-        public UserDetail GetUserByID(int id)
+        public UserDetail GetUserByID(Guid id)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -95,7 +95,7 @@ namespace FinalProject.Services
             }
         }
 
-        public bool DeleteUser(int Id)
+        public bool DeleteUser(Guid Id)
         {
             using (var ctx = new ApplicationDbContext())
             {

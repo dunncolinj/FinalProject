@@ -14,7 +14,7 @@ namespace FinalProject.Models
         public string Breed { get; set; }
         public int Weight { get; set; }
         public string MicrochipNumber { get; set; }
-        public int UserID { get; set; }
+        public Guid UserID { get; set; }
         public Species Species { get; set; }
     }
 }

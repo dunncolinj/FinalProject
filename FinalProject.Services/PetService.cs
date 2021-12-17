@@ -10,9 +10,9 @@ namespace FinalProject.Services
 {
     public class PetService
     {
-        public readonly int _userID;
+        public readonly Guid _userID;
 
-        public PetService(int userID)
+        public PetService(Guid userID)
         {
             _userID = userID;
         }
@@ -118,5 +118,4 @@ namespace FinalProject.Services
             }
         }
     }
-
 }

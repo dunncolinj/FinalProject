@@ -10,10 +10,9 @@ namespace FinalProject.Services
 {
     public class LostPetService
     {
-        private readonly int _ownerID;
-     
+        private readonly Guid _ownerID;
 
-        public LostPetService(int ownerID)
+        public LostPetService(Guid ownerID)
         {
             _ownerID = ownerID;
         }
@@ -51,7 +50,6 @@ namespace FinalProject.Services
                         {
                             PetID = e.PetID,
                             Comments = e.Comments,
-                           
                         }
                   );
                 return query.ToArray();
@@ -120,6 +118,5 @@ namespace FinalProject.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-
     }
 }
