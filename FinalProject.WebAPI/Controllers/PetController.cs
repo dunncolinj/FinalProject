@@ -64,10 +64,9 @@ namespace FinalProject.WebAPI.Controllers
 
         private PetService CreatePetService()
         {
-            var userId = int.Parse(User.Identity.GetUserId());
+            var userId = Guid.Parse(User.Identity.GetUserId());
             var petService = new PetService(userId);
             return petService;
         }
-
     }
 }

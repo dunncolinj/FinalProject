@@ -23,7 +23,7 @@ namespace FinalProject.Models
         [Required]
         [MinLength(1, ErrorMessage = "You must enter in a numer.")]
         [MaxLength(6, ErrorMessage = "The number you have entered is too long.")]
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
 
         public string Breed { get; set; }
         public int Weight { get; set; }
