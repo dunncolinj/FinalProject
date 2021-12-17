@@ -19,9 +19,11 @@ namespace FinalProject.Services
 
         public bool CreateUser(UserCreate model)
         {
+            Guid userGuid = Guid.NewGuid();
+
             var entity = new User()
             {
-                Id = _userId,
+                Id = userGuid,
                 Name = model.Name,
                 Type = model.Type,
                 Phone = model.Phone,
@@ -42,7 +44,7 @@ namespace FinalProject.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Users.Where(e => e.Id == _userId).Select(e => new UserListItem
+                var query = ctx.Users.Select(e => new UserListItem
                 {
                     Id = e.Id,
                     Name = e.Name,
@@ -64,6 +66,25 @@ namespace FinalProject.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.Users.Single(e => e.Id == id);
+                return new UserDetail
+                {
+                    Id = entity.Id,
+                    Name = entity.Name,
+                    Type = entity.Type,
+                    Phone = entity.Phone,
+                    Address = entity.Address,
+                    City = entity.City,
+                    State = entity.State,
+                    Zip = entity.Zip
+                };
+            }
+        }
+
+        public UserDetail GetUserByName(string name)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Users.Single(e => e.Name == name);
                 return new UserDetail
                 {
                     Id = entity.Id,
