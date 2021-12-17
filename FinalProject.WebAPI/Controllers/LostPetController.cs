@@ -15,7 +15,7 @@ namespace FinalProject.WebAPI.Controllers
     {
         private LostPetService CreateLostPetService()
         {
-            var ID = int.Parse(User.Identity.GetUserId());
+            var ID = Guid.Parse(User.Identity.GetUserId());
             var lostPetService = new LostPetService(ID);
             return lostPetService;
         }
@@ -39,10 +39,10 @@ namespace FinalProject.WebAPI.Controllers
             var lostpets = lostPetService.GetLostPets();
             return Ok(lostpets);
         }
-        public IHttpActionResult Get(int petID, int ownerID)
+        public IHttpActionResult Get(int petID)
         {
             LostPetService lostPetService = CreateLostPetService();
-            var lostpet = lostPetService.GetLostPetByID(petID, ownerID);
+            var lostpet = lostPetService.GetLostPetByID(petID);
             return Ok(lostpet);
         }
         
