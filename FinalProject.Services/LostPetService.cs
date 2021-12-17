@@ -10,11 +10,11 @@ namespace FinalProject.Services
 {
     public class LostPetService
     {
-        private readonly Guid _ownerID;
+        private readonly Guid _userID;
 
-        public LostPetService(Guid ownerID)
+        public LostPetService(Guid userID)
         {
-            _ownerID = ownerID;
+            _userID = userID;
         }
 
         public bool CreateLostPet(LostPetCreate model)
@@ -43,49 +43,53 @@ namespace FinalProject.Services
                 var query =
                     ctx
                         .LostPets
-                        .Where(e => e.ID == _ownerID)
+                        //.Where(e => e.UserId == _userID)
                         .Select(
                         e =>
                         new LostPetListItem
                         {
                             PetID = e.PetID,
                             Comments = e.Comments,
+                            WhenLost = e.WhenLost
                         }
                   );
                 return query.ToArray();
             }
         }
 
-        public LostPetDetail GetLostPetByID(int ID, int petID)
+        public LostPetDetail GetLostPetByID(int petID)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                     .LostPets
-                    .Single(e => e.ID == ID && e.PetID == petID);
+                    .Single(e => e.PetID == petID);
                 return
                     new LostPetDetail
                     {
                        
                         PetID = entity.PetID,
-                        Comments = entity.Comments
+                        Comments = entity.Comments,
+                        WhenLost = entity.WhenLost
                     };
             }
         }
 
-        public LostPetDetail GetPetOwner(int ownerID)
+        public LostPetDetail GetPetOwner(int petID)
         {
             using (var ctx = new ApplicationDbContext())
             {
+
                 var entity =
                     ctx
                     .LostPets
-                    .Single(e => e.PetID == ownerID && e.ID == _ownerID);
+                    .Single(e => e.PetID == petID);
                 return
                     new LostPetDetail
                     {
-                        PetID = entity.PetID
+                        PetID = entity.PetID,
+                        Comments = entity.Pet.User.Name
                     };
             }
         }
@@ -97,7 +101,10 @@ namespace FinalProject.Services
                 var entity =
                     ctx
                         .LostPets
-                        .Single(e => e.PetID == model.PetID && e.ID == _ownerID);
+                        .Single(e => e.PetID == model.PetID);
+                entity.PetID = model.PetID;
+                entity.Comments = model.Comments;
+                entity.WhenLost = model.WhenLost;
 
 
                 return ctx.SaveChanges() == 1;
@@ -111,7 +118,7 @@ namespace FinalProject.Services
                 var entity =
                     ctx
                     .LostPets
-                    .Single(e => e.PetID == petID && e.ID == _ownerID);
+                    .Single(e => e.PetID == petID);
 
                 ctx.LostPets.Remove(entity);
 
