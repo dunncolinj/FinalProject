@@ -27,12 +27,12 @@ namespace FinalProject.Services
                     Breed = pet.Breed,
                     Weight = pet.Weight,
                     MicrochipNumber = pet.MicrochipNumber,
-                    UserID = _userID,
+                    UserID = pet.PetOwner.Id
                 };
 
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.Pets.Add(entity);
+                ctx.Pets.Add(entity); 
                 return ctx.SaveChanges() == 1;
             }
         }

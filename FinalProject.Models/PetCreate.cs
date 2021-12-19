@@ -10,20 +10,17 @@ namespace FinalProject.Models
 {
     public class PetCreate
     {
-        [Required]
+        
         [MinLength(1, ErrorMessage = "You must enter in a name for the pet.")]
         [MaxLength(45, ErrorMessage = "The name you have entered is too long.")]
         public string Name { get; set; }
 
-        [Required]
+        
         [MinLength(1, ErrorMessage = "You must enter in a number.")]
         [MaxLength(6, ErrorMessage = "The number you have entered is too long.")]
         public string MicrochipNumber { get; set; }
 
-        [Required]
-        [MinLength(1, ErrorMessage = "You must enter in a numer.")]
-        [MaxLength(6, ErrorMessage = "The number you have entered is too long.")]
-        public Guid UserId { get; set; }
+        public User PetOwner { get; set; }
 
         public string Breed { get; set; }
         public int Weight { get; set; }
