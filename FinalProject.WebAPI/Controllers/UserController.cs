@@ -35,7 +35,7 @@ namespace FinalProject.WebAPI.Controllers
             return Ok();
         }
 
-        public IHttpActionResult Get(Guid id)
+        public IHttpActionResult Get(int id)
         {
             UserService userService = CreateUserService();
             var user = userService.GetUserByID(id);
@@ -50,7 +50,7 @@ namespace FinalProject.WebAPI.Controllers
             return Ok();
         }
 
-        public IHttpActionResult Delete(Guid id)
+        public IHttpActionResult Delete(int id)
         {
             var service = CreateUserService();
             if (!service.DeleteUser(id)) return InternalServerError();
