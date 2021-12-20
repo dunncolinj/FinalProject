@@ -19,11 +19,8 @@ namespace FinalProject.Services
 
         public bool CreateUser(UserCreate model)
         {
-            Guid userGuid = Guid.NewGuid();
-
             var entity = new User()
             {
-                Id = userGuid,
                 Name = model.Name,
                 Type = model.Type,
                 Phone = model.Phone,
@@ -61,7 +58,7 @@ namespace FinalProject.Services
             }
         }
 
-        public UserDetail GetUserByID(Guid id)
+        public UserDetail GetUserByID(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -116,7 +113,7 @@ namespace FinalProject.Services
             }
         }
 
-        public bool DeleteUser(Guid Id)
+        public bool DeleteUser(int Id)
         {
             using (var ctx = new ApplicationDbContext())
             {

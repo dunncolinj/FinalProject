@@ -54,7 +54,7 @@ namespace FinalProject.Services
                                     Breed = e.Breed,
                                     Weight = e.Weight,
                                     MicrochipNumber = e.MicrochipNumber,
-                                    UserID = _userID
+                                    UserID = e.UserID
                                 }
                         );
                 return query.ToArray();
@@ -78,7 +78,7 @@ namespace FinalProject.Services
                         Weight = entity.Weight, 
                         Species = entity.Species, 
                         MicrochipNumber = entity.MicrochipNumber,
-                        UserID = _userID
+                        UserID = entity.UserID
                     };
             }
         }
@@ -96,7 +96,7 @@ namespace FinalProject.Services
                 entity.Breed = pet.Breed;
                 entity.Weight = pet.Weight;
                 entity.MicrochipNumber = pet.MicrochipNumber;
-                entity.UserID = _userID;
+                entity.UserID = pet.UserID;
                 entity.User = pet.User;
 
                 return ctx.SaveChanges() == 1;

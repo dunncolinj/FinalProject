@@ -10,7 +10,7 @@ namespace FinalProject.Models
 {
     public class UserDetail
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         [Display(Name = "Full Name")] 
         public string Name { get; set; }
         [Display(Name = "Account Type")]

@@ -11,7 +11,7 @@ namespace FinalProject.Data
     public class User
     {
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         [Required]
         [MaxLength(100, ErrorMessage = "Limit of 100 characters")]
         public string Name { get; set; }
