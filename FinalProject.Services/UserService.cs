@@ -32,8 +32,15 @@ namespace FinalProject.Services
 
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.Users.Add(entity);
-                return (ctx.SaveChanges() == 1);
+                try
+                {
+                    ctx.Users.Add(entity);
+                    return (ctx.SaveChanges() == 1);
+                }
+                catch
+                {
+                    return false;
+                }
             }
         }
 
