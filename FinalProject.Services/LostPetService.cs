@@ -59,70 +59,99 @@ namespace FinalProject.Services
 
         public LostPetDetail GetLostPetByID(int petID)
         {
-            using (var ctx = new ApplicationDbContext())
+            try
             {
-                var entity =
-                    ctx
-                    .LostPets
-                    .Single(e => e.PetID == petID);
-                return
-                    new LostPetDetail
-                    {
-                       
-                        PetID = entity.PetID,
-                        Comments = entity.Comments,
-                        WhenLost = entity.WhenLost
-                    };
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var entity =
+                         ctx
+                            .LostPets
+                            .Single(e => e.PetID == petID);
+                    return
+                         new LostPetDetail
+                         {
+
+                             PetID = entity.PetID,
+                             Comments = entity.Comments,
+                             WhenLost = entity.WhenLost
+                         };
+                }
+            }
+            catch
+            {
+                return null;
             }
         }
 
         public LostPetDetail GetPetOwner(int petID)
         {
-            using (var ctx = new ApplicationDbContext())
+            try
             {
+                using (var ctx = new ApplicationDbContext())
+                {
 
-                var entity =
-                    ctx
-                    .LostPets
-                    .Single(e => e.PetID == petID);
-                return
-                    new LostPetDetail
-                    {
-                        PetID = entity.PetID,
-                        Comments = entity.Pet.User.Name
-                    };
+                    var entity =
+                        ctx
+                           .LostPets
+                           .Single(e => e.PetID == petID);
+                    return
+                       new LostPetDetail
+                       {
+                           PetID = entity.PetID,
+                           Comments = entity.Pet.User.Name
+                       };
+                }
+            }
+            catch
+            {
+                return null;
             }
         }
 
         public bool UpdateByID(LostPetEdit model)
         {
-            using (var ctx = new ApplicationDbContext())
+            try
             {
-                var entity =
-                    ctx
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var entity =
+                     ctx
                         .LostPets
                         .Single(e => e.PetID == model.PetID);
-                entity.PetID = model.PetID;
-                entity.Comments = model.Comments;
-                entity.WhenLost = model.WhenLost;
+                    entity.PetID = model.PetID;
+                    entity.Comments = model.Comments;
+                    entity.WhenLost = model.WhenLost;
 
 
-                return ctx.SaveChanges() == 1;
+                    return ctx.SaveChanges() == 1;
+                }
+            }
+            catch
+            {
+                return false;
             }
         }
 
         public bool DeleteByID(int petID)
         {
-            using (var ctx = new ApplicationDbContext())
+            try
             {
-                var entity =
-                    ctx
-                    .LostPets
-                    .Single(e => e.PetID == petID);
 
-                ctx.LostPets.Remove(entity);
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var entity =
+                        ctx
+                           .LostPets
+                           .Single(e => e.PetID == petID);
 
-                return ctx.SaveChanges() == 1;
+                    ctx.LostPets.Remove(entity);
+
+                    return ctx.SaveChanges() == 1;
+                }
+            }
+            catch
+            {
+                return false;
             }
         }
     }
