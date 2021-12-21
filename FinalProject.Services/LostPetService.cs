@@ -132,7 +132,7 @@ namespace FinalProject.Services
             }
         }
 
-        public bool DeleteByID(int petID)
+        public bool DeleteByID(int ID)
         {
             try
             {
@@ -142,7 +142,7 @@ namespace FinalProject.Services
                     var entity =
                         ctx
                            .LostPets
-                           .Single(e => e.PetID == petID);
+                           .Single(e => e.ID == ID);
 
                     ctx.LostPets.Remove(entity);
 
