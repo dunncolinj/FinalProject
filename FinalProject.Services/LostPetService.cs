@@ -90,15 +90,19 @@ namespace FinalProject.Services
                 using (var ctx = new ApplicationDbContext())
                 {
 
-                    var entity =
+                    var entity1 =
                         ctx
                            .LostPets
                            .Single(e => e.PetID == petID);
+                    var entity2 =
+                        ctx
+                            .Users
+                            .Single(e => e.Id == entity1.UserId);
                     return
                        new LostPetDetail
                        {
-                           PetID = entity.PetID,
-                           Comments = entity.Pet.User.Name
+                           PetID = entity1.PetID,
+                           Comments = entity2.Name
                        };
                 }
             }

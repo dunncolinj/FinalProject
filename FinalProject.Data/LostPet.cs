@@ -21,7 +21,7 @@ namespace FinalProject.Data
 
         public string Comments { get; set; }
 
-        public Guid UserId { get; set; }
+        public int UserId { get; set; }
 
     }
 }
