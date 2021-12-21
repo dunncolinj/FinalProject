@@ -19,6 +19,8 @@ namespace FinalProject.Services
 
         public bool CreateUser(UserCreate model)
         {
+            if (model is null) return false;
+
             var entity = new User()
             {
                 Name = model.Name,
@@ -29,18 +31,10 @@ namespace FinalProject.Services
                 State = model.State,
                 Zip = model.Zip
             };
-
             using (var ctx = new ApplicationDbContext())
             {
-                try
-                {
-                    ctx.Users.Add(entity);
-                    return (ctx.SaveChanges() == 1);
-                }
-                catch
-                {
-                    return false;
-                }
+                ctx.Users.Add(entity);
+                return (ctx.SaveChanges() == 1);
             }
         }
 
@@ -69,64 +63,93 @@ namespace FinalProject.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Users.Single(e => e.Id == id);
-                return new UserDetail
+                try
                 {
-                    Id = entity.Id,
-                    Name = entity.Name,
-                    Type = entity.Type,
-                    Phone = entity.Phone,
-                    Address = entity.Address,
-                    City = entity.City,
-                    State = entity.State,
-                    Zip = entity.Zip
-                };
+                    var entity = ctx.Users.Single(e => e.Id == id);
+                    return new UserDetail
+                    {
+                        Id = entity.Id,
+                        Name = entity.Name,
+                        Type = entity.Type,
+                        Phone = entity.Phone,
+                        Address = entity.Address,
+                        City = entity.City,
+                        State = entity.State,
+                        Zip = entity.Zip
+                    };
+                }
+                catch
+                {
+                    return null;
+                }
             }
         }
 
         public UserDetail GetUserByName(string name)
         {
-            using (var ctx = new ApplicationDbContext())
+            try
             {
-                var entity = ctx.Users.Single(e => e.Name == name);
-                return new UserDetail
+                using (var ctx = new ApplicationDbContext())
                 {
-                    Id = entity.Id,
-                    Name = entity.Name,
-                    Type = entity.Type,
-                    Phone = entity.Phone,
-                    Address = entity.Address,
-                    City = entity.City,
-                    State = entity.State,
-                    Zip = entity.Zip
-                };
+                    var entity = ctx.Users.Single(e => e.Name == name);
+                    return new UserDetail
+                    {
+                        Id = entity.Id,
+                        Name = entity.Name,
+                        Type = entity.Type,
+                        Phone = entity.Phone,
+                        Address = entity.Address,
+                        City = entity.City,
+                        State = entity.State,
+                        Zip = entity.Zip
+                    };
+                }
+            }
+            catch
+            {
+                return null;
             }
         }
 
         public bool UpdateUser(UserUpdate model)
         {
-            using (var ctx = new ApplicationDbContext())
+            try
             {
-                var entity = ctx.Users.Single(e => e.Id == model.Id);
-                entity.Name = model.Name;
-                entity.Type = model.Type;
-                entity.Phone = model.Phone;
-                entity.Address = model.Address;
-                entity.City = model.City;
-                entity.State = model.State;
-                entity.Zip = model.Zip;
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var entity = ctx.Users.Single(e => e.Id == model.Id);
+                    entity.Name = model.Name;
+                    entity.Type = model.Type;
+                    entity.Phone = model.Phone;
+                    entity.Address = model.Address;
+                    entity.City = model.City;
+                    entity.State = model.State;
+                    entity.Zip = model.Zip;
 
-                return (ctx.SaveChanges() == 1);
+                    return (ctx.SaveChanges() == 1);
+                }
             }
+            catch
+            {
+                return false;
+            }
+
         }
 
         public bool DeleteUser(int Id)
         {
-            using (var ctx = new ApplicationDbContext())
+            try
             {
-                var entity = ctx.Users.Single(e => e.Id == Id);
-                ctx.Users.Remove(entity);
-                return (ctx.SaveChanges() == 1);
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var entity = ctx.Users.Single(e => e.Id == Id);
+                    ctx.Users.Remove(entity);
+                    return (ctx.SaveChanges() == 1);
+                }
+            }
+            catch
+            {
+                return false;
             }
         }
     }
