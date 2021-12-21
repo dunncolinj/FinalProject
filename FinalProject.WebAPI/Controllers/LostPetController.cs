@@ -59,11 +59,11 @@ namespace FinalProject.WebAPI.Controllers
             return Ok();
         }
 
-        public IHttpActionResult Delete(int petID)
+        public IHttpActionResult Delete(int ID)
         {
             var service = CreateLostPetService();
 
-            if (!service.DeleteByID(petID))
+            if (!service.DeleteByID(ID))
                 return InternalServerError();
 
             return Ok();
