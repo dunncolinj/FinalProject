@@ -49,6 +49,7 @@ namespace FinalProject.Services
                             e =>
                                 new PetListItem
                                 {
+                                    ID = e.ID,
                                     Name = e.Name,
                                     Species = e.Species,
                                     Breed = e.Breed,
