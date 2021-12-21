@@ -27,7 +27,7 @@ namespace FinalProject.Services
                     Breed = pet.Breed,
                     Weight = pet.Weight,
                     MicrochipNumber = pet.MicrochipNumber,
-                    UserID = pet.PetOwner.Id
+                    UserID = pet.UserID
                 };
 
             using (var ctx = new ApplicationDbContext())
