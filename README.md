@@ -1,9 +1,9 @@
 # Lost Pet API Project
 
-Team: The Foodie Trio
-Contributors: Leslie Counterman, Colin Dunn, Anna Heselbarth
-Version: 1.0
-Release date: December 23, 2021
+Team: The Foodie Trio  
+Contributors: Leslie Counterman, Colin Dunn, Anna Heselbarth  
+Version: 1.0  
+Release date: December 23, 2021 
 
 # Description
 
@@ -16,13 +16,10 @@ is lost, and to generate alerts when a pet is found and their microchip is scann
 
 # Useful Links
 
-GitHub Repository: https://github.com/dunncolinj/FinalProject
-
-Project planning documentation: https://docs.google.com/document/d/1hWw6U_bDUd6h3dln63sJprL7DYtT_yRqXd9l02JvTZc
-
-Database entity-relationship diagram: https://dbdiagram.io/d/61bbe9428c901501c0f464b9
-
-Trello board: https://trello.com/b/rR7v0e7c/lost-pet-api
+GitHub Repository: https://github.com/dunncolinj/FinalProject  
+Project planning documentation: https://docs.google.com/document/d/1hWw6U_bDUd6h3dln63sJprL7DYtT_yRqXd9l02JvTZc  
+Database entity-relationship diagram: https://dbdiagram.io/d/61bbe9428c901501c0f464b9  
+Trello board: https://trello.com/b/rR7v0e7c/lost-pet-api  
 
 
 # System Requirements
