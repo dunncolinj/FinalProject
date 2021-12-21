@@ -20,7 +20,7 @@ namespace FinalProject.Models
         [MaxLength(6, ErrorMessage = "The number you have entered is too long.")]
         public string MicrochipNumber { get; set; }
 
-        public User PetOwner { get; set; }
+        public int UserID { get; set; }
 
         public string Breed { get; set; }
         public int Weight { get; set; }
