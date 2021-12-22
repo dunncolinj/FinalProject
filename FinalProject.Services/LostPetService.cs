@@ -83,7 +83,7 @@ namespace FinalProject.Services
             }
         }
 
-        public LostPetDetail GetPetOwner(int petID)
+        public LostPetDetail GetPetOwner(string name)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace FinalProject.Services
                     var entity1 =
                         ctx
                            .LostPets
-                           .Single(e => e.PetID == petID);
+                           .Single(e => e.User.Name == name);
                     var entity2 =
                         ctx
                             .Users
@@ -102,7 +102,8 @@ namespace FinalProject.Services
                        new LostPetDetail
                        {
                            PetID = entity1.PetID,
-                           Comments = entity2.Name
+                           Comments = entity2.Name,
+                           UserID = entity1.UserId
                        };
                 }
             }
