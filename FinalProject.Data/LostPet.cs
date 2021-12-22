@@ -21,7 +21,10 @@ namespace FinalProject.Data
 
         public string Comments { get; set; }
 
+        [ForeignKey(nameof(User))]
         public int UserId { get; set; }
+
+        public virtual User User { get; set; }
 
     }
 }

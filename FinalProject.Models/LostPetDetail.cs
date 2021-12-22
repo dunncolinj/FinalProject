@@ -12,6 +12,7 @@ namespace FinalProject.Models
         public int PetID { get; set; }
         public string Comments { get; set; }
         public DateTime WhenLost { get; set; }
-        public int MyProperty { get; set; }
+        public int UserID { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -46,6 +46,14 @@ namespace FinalProject.WebAPI.Controllers
             return Ok(lostpet);
         }
 
+        
+        public IHttpActionResult Get(string name)
+        {
+            LostPetService lostPetService = CreateLostPetService();
+            var lostPetOwner = lostPetService.GetPetOwner(name);
+            return Ok(lostPetOwner);
+        }
+
         public IHttpActionResult Put(LostPetEdit lostPet)
         {
             if (!ModelState.IsValid)
