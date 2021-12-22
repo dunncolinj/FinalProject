@@ -19,10 +19,17 @@ namespace FinalProject.WebAPI.Controllers
             return Ok(pets);
         }
 
-        public IHttpActionResult Get(int id)
+        public IHttpActionResult Get(string id)
         {
             PetService petService = CreatePetService();
-            var pet = petService.GetPetByID(id);
+            var pet = petService.GetPetByChipID(id);
+            return Ok(pet);
+        }
+
+        public IHttpActionResult Get(int userID)
+        {
+            PetService petService = CreatePetService();
+            var pet = petService.GetPetOwner(userID);
             return Ok(pet);
         }
 

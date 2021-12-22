@@ -19,6 +19,8 @@ namespace FinalProject.Services
 
         public bool CreatePet(PetCreate pet)
         {
+            if (pet is null) return false;
+
             var entity =
                 new Pet()
                 {
@@ -32,7 +34,7 @@ namespace FinalProject.Services
 
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.Pets.Add(entity); 
+                ctx.Pets.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
@@ -44,7 +46,6 @@ namespace FinalProject.Services
                 var query =
                     ctx
                         .Pets
-                        //.Where(e => e.UserID == _userID)
                         .Select(
                             e =>
                                 new PetListItem
@@ -62,61 +63,144 @@ namespace FinalProject.Services
             }
         }
 
-        public PetDetail GetPetByID(int id)
+        public IEnumerable<PetListItem> GetPetsByUserID(int userID)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
+                var query =
                     ctx
                         .Pets
-                        .Single(e => e.ID == id);
-                return
-                    new PetDetail
+                        .Where(e => e.UserID == userID)
+                        .Select(
+                            e =>
+                    new PetListItem
                     {
-                        ID = entity.ID,
-                        Name = entity.Name, 
-                        Breed = entity.Breed, 
-                        Weight = entity.Weight, 
-                        Species = entity.Species, 
-                        MicrochipNumber = entity.MicrochipNumber,
-                        UserID = entity.UserID
-                    };
+                        ID = e.ID,
+                        Name = e.Name,
+                        Breed = e.Breed,
+                        Weight = e.Weight,
+                        Species = e.Species,
+                        MicrochipNumber = e.MicrochipNumber,
+                        UserID = e.UserID
+                    }
+                    );
+                return query.ToArray();
+            }
+        }
+
+        public PetDetail GetPetByChipID(string chipID)
+        {
+            try
+            {
+                using (var ctx = new ApplicationDbContext())
+                {
+
+                    var entity =
+                    ctx
+                        .Pets
+                        .Single(e => e.MicrochipNumber == chipID);
+                    return
+                        new PetDetail
+                        {
+                            ID = entity.ID,
+                            Name = entity.Name,
+                            Breed = entity.Breed,
+                            Weight = entity.Weight,
+                            Species = entity.Species,
+                            MicrochipNumber = entity.MicrochipNumber,
+                            UserID = entity.UserID
+                        };
+                }
+            }
+
+            catch
+            {
+                return null;
+            }
+        }
+
+        public PetDetail GetPetOwner(int userID)
+        {
+            try
+            {
+                using (var ctx = new ApplicationDbContext())
+                {
+
+                    var entity =
+                        ctx
+                            .Pets
+                            .Single(e => e.User.Id == userID);
+                    var entity2 =
+                        ctx
+                            .Users
+                            .Single(e => e.Id == entity.UserID);
+                    return
+                        new PetDetail
+                        {
+                            ID = entity.ID,
+                            Name = entity.Name,
+                            Breed = entity.Breed,
+                            Weight = entity.Weight,
+                            Species = entity.Species,
+                            MicrochipNumber = entity.MicrochipNumber,
+                            UserID = entity.UserID
+                        };
+                }
+            }
+            catch
+            {
+                return null;
             }
         }
 
         public bool UpdatePet(PetEdit pet)
         {
-            using (var ctx = new ApplicationDbContext())
+            try
             {
-                var entity =
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var entity =
                     ctx
-                        .Pets
-                        .Single(e => e.ID == pet.ID);
-                entity.Name = pet.Name;
-                entity.Species = pet.Species;
-                entity.Breed = pet.Breed;
-                entity.Weight = pet.Weight;
-                entity.MicrochipNumber = pet.MicrochipNumber;
-                entity.UserID = pet.UserID;
-                entity.User = pet.User;
+                         .Pets
+                         .Single(e => e.ID == pet.ID);
+                    entity.Name = pet.Name;
+                    entity.Species = pet.Species;
+                    entity.Breed = pet.Breed;
+                    entity.Weight = pet.Weight;
+                    entity.MicrochipNumber = pet.MicrochipNumber;
+                    entity.UserID = pet.UserID;
+                    entity.User = pet.User;
 
-                return ctx.SaveChanges() == 1;
+                    return ctx.SaveChanges() == 1;
+                }
+            }
+            catch
+            {
+                return false;
             }
         }
 
         public bool DeletePet(int ID)
         {
-            using (var ctx = new ApplicationDbContext())
+            try
             {
-                var entity =
-                    ctx
-                        .Pets
-                        .Single(e => e.ID == ID);
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var entity =
+                        ctx
+                            .Pets
+                            .Single(e => e.ID == ID);
 
-                ctx.Pets.Remove(entity);
+                    ctx.Pets.Remove(entity);
 
-                return ctx.SaveChanges() == 1;
+                    return ctx.SaveChanges() == 1;
+                }
+            }
+            catch
+            {
+                return false;
             }
         }
     }
 }
+
