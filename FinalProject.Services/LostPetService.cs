@@ -93,17 +93,17 @@ namespace FinalProject.Services
                     var entity1 =
                         ctx
                            .LostPets
-                           .Single(e => e.User.Name == name);
+                           .Single(e => e.Pet.User.Name == name);
                     var entity2 =
                         ctx
                             .Users
-                            .Single(e => e.Id == entity1.UserId);
+                            .Single(e => e.Id == entity1.Pet.UserID);
                     return
                        new LostPetDetail
                        {
                            PetID = entity1.PetID,
                            Comments = entity2.Name,
-                           UserID = entity1.UserId
+                           UserID = entity1.Pet.UserID
                        };
                 }
             }
