@@ -24,9 +24,9 @@ Trello board: https://trello.com/b/rR7v0e7c/lost-pet-api
 
 # System Requirements
 
-Visual Studio 2019 must be installed
-Microsoft SQL Server Developer Edition must be installed
-Postman must be installed to submit REST API requests.
+Visual Studio 2019 must be installed  
+Microsoft SQL Server Developer Edition must be installed  
+Postman must be installed to submit REST API requests  
 
 # Installation instructions
 
