@@ -43,7 +43,6 @@ namespace FinalProject.Services
                 var query =
                     ctx
                         .LostPets
-                        //.Where(e => e.UserId == _userID)
                         .Select(
                         e =>
                         new LostPetListItem
@@ -59,8 +58,8 @@ namespace FinalProject.Services
 
         public LostPetDetail GetLostPetByID(int petID)
         {
-            try
-            {
+           try
+           {
                 using (var ctx = new ApplicationDbContext())
                 {
                     var entity =
@@ -76,11 +75,11 @@ namespace FinalProject.Services
                              WhenLost = entity.WhenLost
                          };
                 }
-            }
-            catch
-            {
-                return null;
-            }
+           }
+           catch
+           {
+               return null;
+           }
         }
 
         public LostPetDetail GetPetOwner(string name)
