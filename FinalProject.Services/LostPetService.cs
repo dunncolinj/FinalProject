@@ -43,7 +43,6 @@ namespace FinalProject.Services
                 var query =
                     ctx
                         .LostPets
-                        //.Where(e => e.UserId == _userID)
                         .Select(
                         e =>
                         new LostPetListItem
