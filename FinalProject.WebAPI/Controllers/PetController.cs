@@ -29,7 +29,7 @@ namespace FinalProject.WebAPI.Controllers
         public IHttpActionResult Get(int userID)
         {
             PetService petService = CreatePetService();
-            var pet = petService.GetPetOwner(userID);
+            var pet = petService.GetPetsByUserID(userID);
             return Ok(pet);
         }
 
@@ -42,6 +42,7 @@ namespace FinalProject.WebAPI.Controllers
 
             if (!service.CreatePet(pet))
                 return InternalServerError();
+
 
             return Ok();
         }

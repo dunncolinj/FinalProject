@@ -34,8 +34,16 @@ namespace FinalProject.Services
 
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.Pets.Add(entity);
-                return ctx.SaveChanges() == 1;
+                try
+                {
+                    var query = ctx.Pets.Single(e => e.MicrochipNumber == pet.MicrochipNumber);
+                    return false;
+                }
+                catch
+                {
+                    ctx.Pets.Add(entity);
+                    return ctx.SaveChanges() == 1;
+                }
             }
         }
 
@@ -113,40 +121,6 @@ namespace FinalProject.Services
                 }
             }
 
-            catch
-            {
-                return null;
-            }
-        }
-
-        public PetDetail GetPetOwner(int userID)
-        {
-            try
-            {
-                using (var ctx = new ApplicationDbContext())
-                {
-
-                    var entity =
-                        ctx
-                            .Pets
-                            .Single(e => e.User.Id == userID);
-                    var entity2 =
-                        ctx
-                            .Users
-                            .Single(e => e.Id == entity.UserID);
-                    return
-                        new PetDetail
-                        {
-                            ID = entity.ID,
-                            Name = entity.Name,
-                            Breed = entity.Breed,
-                            Weight = entity.Weight,
-                            Species = entity.Species,
-                            MicrochipNumber = entity.MicrochipNumber,
-                            UserID = entity.UserID
-                        };
-                }
-            }
             catch
             {
                 return null;
