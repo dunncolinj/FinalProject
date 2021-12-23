@@ -138,11 +138,37 @@ namespace FinalProject.Services
 
         public bool DeleteUser(int Id)
         {
+            // check if owner has pets; if so, do not allow deletion
+
+            try
+            {
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var query = ctx.Pets.Where(e => e.UserID == Id).Select(e => new PetListItem
+                    {
+                        ID = e.ID,
+                        Name = e.Name,
+                        Breed = e.Breed,
+                        Weight = e.Weight,
+                        Species = e.Species,
+                        MicrochipNumber = e.MicrochipNumber,
+                        UserID = e.UserID
+                    }
+                    );
+
+                    if (query.ToArray().Length > 0) return false;
+                }
+            }
+            catch
+            {
+                // no action required - code may proceed
+            }
             try
             {
                 using (var ctx = new ApplicationDbContext())
                 {
                     var entity = ctx.Users.Single(e => e.Id == Id);
+
                     ctx.Users.Remove(entity);
                     return (ctx.SaveChanges() == 1);
                 }
