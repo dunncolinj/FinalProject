@@ -12,15 +12,17 @@ Pets may be implanted with a microchip with a unique serial number to identify t
 This API allows pet owners and pet service professionals to keep track of animals
 by retaining information about a pet, their owner, and microchip numbers.
 In addition, API services are provided to allow pet owners to report their pet
-is lost, and to generate alerts when a pet is found and their microchip is scanned.
+is lost.
+
+Please see the "dev" branch for code.
 
 # Useful Links
 
 GitHub Repository: https://github.com/dunncolinj/FinalProject  
-Project planning documentation: https://docs.google.com/document/d/1hWw6U_bDUd6h3dln63sJprL7DYtT_yRqXd9l02JvTZc  
+Project planning documentation: https://docs.google.com/document/d/1hWw6U_bDUd6h3dln63sJprL7DYtT_yRqXd9l02JvTZc 
 Database entity-relationship diagram: https://dbdiagram.io/d/61bbe9428c901501c0f464b9  
-Trello board: https://trello.com/b/rR7v0e7c/lost-pet-api  
-
+Trello board: https://trello.com/invite/b/rR7v0e7c/7146d6f1c735dde5fecab335ea4398c2/lost-pet-api 
+Presentation slides: https://docs.google.com/presentation/d/1kR7UufjkjJpl6MkcNa1EMO5dJJcsh9CxuEVeLkIU54Y
 
 # System Requirements
 
